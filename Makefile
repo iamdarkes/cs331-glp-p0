@@ -1,21 +1,16 @@
-#
-#
-JCC = javac
-
-#
-#
 JFLAGS = -g
+JC = javac
+.SUFFIXES: .java .class
+.java.class:
+	$(JC) $(JFLAGS) $*.java
 
-#
-#
-default: HelloWorld.class
+CLASSES = \
+    HelloWorld.java
 
-#
-#
-HelloWorld.class: HelloWorld.java
-      $(JCC) $(JFLAGS) HelloWorld.java
+default: classes
 
-#
-#
+#was formly -> "classes:"...
+all: $(CLASSES:.java=.class)
+
 clean:
-      $(RM) *.class
+	$(RM) *.class
